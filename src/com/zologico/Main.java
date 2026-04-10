@@ -1,58 +1,65 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package com.zologico;
 
-/**
- *
- * @author ferna
- */
-public class Main {
+import java.util.Scanner;
 
-    /**
-     * @param args the command line arguments
-     */
+public class Main {
     public static void main(String[] args) {
-    
-        java.util.Scanner sn = new java.util.Scanner(System.in);
+        Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; 
 
         while (!salir) {
-            System.out.println("--- MENU PRINCIPAL ZOOLÓGICO ---");
-            System.out.println("1. Zoo");
-            System.out.println("2. Fase II");
-            System.out.println("3. Fase III");
+            System.out.println("\n========================================");
+            System.out.println("   SISTEMA DE GESTIÓN ZOOLÓGICO UMG");
+            System.out.println("========================================");
+            System.out.println("1. Zoo (Fase I: Herencia y Recursividad)");
+            System.out.println("2. Fase II (Persistencia en Archivos)");
+            System.out.println("3. Fase III (Estructuras de Datos)");
             System.out.println("4. Salir");
+            System.out.print("Seleccione una opción: ");
 
-            System.out.print("Escribe una de las opciones: ");
-            opcion = sn.nextInt();
+            try {
+                opcion = sn.nextInt();
 
-            switch (opcion) {
-                case 1:
-                    // Creamos un objeto de la clase Leon
-                    // (Nombre, Especie, Cantidad de alimento)
-                    Leon miLeon = new Leon("Simba", "Felino", 5.5);
-                    
-                    System.out.println("--- DATOS DEL ANIMAL ---");
-                    miLeon.mostrarDatos(); // Método heredado de Animal
-                    miLeon.emitirSonido(); // Método polimórfico de Leon
-                    break;
-                case 2:
-                    System.out.println("Has seleccionado la opción 2 (Fase II)");
-                    break;
-                case 3:
-                    System.out.println("Has seleccionado la opción 3 (Fase III)");
-                    break;
-                case 4:
-                    salir = true;
-                    System.out.println("Saliendo del programa... ¡Feliz día!");
-                    break;
-                default:
-                    System.out.println("Solo números entre 1 y 4");
+                switch (opcion) {
+                    case 1:
+                        System.out.println("\n--- EJECUTANDO FASE I ---");
+                        // 1. Creamos el objeto usando Polimorfismo
+                        // (Nombre, Especie, kg de comida al día)
+                        Leon miLeon = new Leon("Simba", "Mamífero - Felino", 8.5);
+                        
+                        // 2. Demostramos el sonido (Polimorfismo)
+                        miLeon.emitirSonido();
+                        
+                        // 3. Demostramos el cálculo de comida (Recursividad)
+                        int dias = 7;
+                        double totalComida = miLeon.calcularConsumoRecursivo(dias);
+                        
+                        System.out.println("Animal: " + miLeon.getNombre());
+                        System.out.println("Consumo diario: " + 8.5 + " kg");
+                        System.out.println("Total de alimento para " + dias + " días: " + totalComida + " kg");
+                        break;
+
+                    case 2:
+                        System.out.println("\n[INFO] Fase II: Persistencia en archivos CSV - Próximamente.");
+                        break;
+
+                    case 3:
+                        System.out.println("\n[INFO] Fase III: Pilas, Colas y Listas - Próximamente.");
+                        break;
+
+                    case 4:
+                        System.out.println("Saliendo del sistema... ¡Feliz día, Ingeniero!");
+                        salir = true;
+                        break;
+
+                    default:
+                        System.out.println("Opción no válida. Intente de nuevo.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: Por favor ingrese un número válido.");
+                sn.next(); // Limpiar el scanner para evitar bucle infinito
             }
         }
     }
-    
 }

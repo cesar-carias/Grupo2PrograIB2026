@@ -1,10 +1,9 @@
 package com.zologico;
 
 public abstract class Animal {
-    // Atributos básicos que todos los animales del zoo tendrán
     protected String nombre;
     protected String especie;
-    protected double cantidadAlimento; // Para la recursividad después
+    protected double cantidadAlimento;
 
     public Animal(String nombre, String especie, double cantidadAlimento) {
         this.nombre = nombre;
@@ -12,11 +11,17 @@ public abstract class Animal {
         this.cantidadAlimento = cantidadAlimento;
     }
 
-    // Este método es "Abstracto" porque cada animal hace un sonido distinto
-    // Esto es POLIMORFISMO
+    // RECURSIVIDAD: Cálculo de alimento día por día
+    public double calcularConsumoRecursivo(int dias) {
+        if (dias <= 0) return 0;
+        return this.cantidadAlimento + calcularConsumoRecursivo(dias - 1);
+    }
+
     public abstract void emitirSonido();
 
-    public void mostrarDatos() {
-        System.out.println("Animal: " + nombre + " | Especie: " + especie);
-    }
+// Este es el método que le falta a tu Main para reconocer el nombre
+public String getNombre() {
+    return nombre;
+}
+
 }

@@ -1,16 +1,16 @@
 package com.zologico;
 
-// "extends Animal" significa que León hereda todo de tu clase madre
-public class Leon extends Animal {
+// Hereda de Mamifero, cumpliendo la jerarquía del Ing. García
+public class Leon extends Mamifero {
 
+    // Constructor: Recibe los datos y los pasa hacia arriba (super)
     public Leon(String nombre, String especie, double cantidadAlimento) {
-        // "super" le envía los datos al constructor de la clase Animal
         super(nombre, especie, cantidadAlimento);
     }
 
-    // Aquí aplicas el POLIMORFISMO: defines el sonido real
+    // Polimorfismo: Cada animal tiene su propio rugido
     @Override
     public void emitirSonido() {
-        System.out.println("El león " + nombre + " está rugiendo: ¡ROAARR!");
+        System.out.println("El león " + nombre + " está rugiendo: ¡ROAARRRR!");
     }
 }
