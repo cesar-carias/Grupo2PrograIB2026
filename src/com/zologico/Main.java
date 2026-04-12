@@ -21,8 +21,14 @@ public class Main {
             System.out.println("5. Salir");
             System.out.print("Seleccione: ");
 
-            opcion = sc.nextInt();
-            sc.nextLine();
+            try {
+                opcion = sc.nextInt();
+                sc.nextLine();
+            } catch (Exception e) {
+                System.out.println("Entrada no valida. Ingrese un numero.");
+                sc.nextLine();
+                opcion = 0;
+            }
 
             switch (opcion) {
                 case 1:
@@ -50,53 +56,59 @@ public class Main {
     }
 
     public static void agregarAnimal(Scanner sc) {
-        System.out.println("\n1. Mamifero");
-        System.out.println("2. Ave");
-        System.out.println("3. Reptil");
-        System.out.print("Seleccione tipo: ");
-        int tipo = sc.nextInt();
-        sc.nextLine();
+        try {
+            System.out.println("\n1. Mamifero");
+            System.out.println("2. Ave");
+            System.out.println("3. Reptil");
+            System.out.print("Seleccione tipo: ");
+            int tipo = sc.nextInt();
+            sc.nextLine();
 
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
+            System.out.print("Nombre: ");
+            String nombre = sc.nextLine();
 
-        System.out.print("Especie: ");
-        String especie = sc.nextLine();
+            System.out.print("Especie: ");
+            String especie = sc.nextLine();
 
-        System.out.print("Consumo diario (kg): ");
-        double consumo = sc.nextDouble();
-        sc.nextLine();
+            System.out.print("Consumo diario (kg): ");
+            double consumo = sc.nextDouble();
+            sc.nextLine();
 
-        switch (tipo) {
-            case 1:
-                if (mamifero == null) {
-                    mamifero = new Mamifero(nombre, especie, consumo);
-                    System.out.println("Mamifero agregado.");
-                } else {
-                    System.out.println("Ya existe un mamifero registrado.");
-                }
-                break;
+            switch (tipo) {
+                case 1:
+                    if (mamifero == null) {
+                        mamifero = new Mamifero(nombre, especie, consumo);
+                        System.out.println("Mamifero agregado.");
+                    } else {
+                        System.out.println("Ya existe un mamifero registrado.");
+                    }
+                    break;
 
-            case 2:
-                if (ave == null) {
-                    ave = new Ave(nombre, especie, consumo);
-                    System.out.println("Ave agregada.");
-                } else {
-                    System.out.println("Ya existe un ave registrada.");
-                }
-                break;
+                case 2:
+                    if (ave == null) {
+                        ave = new Ave(nombre, especie, consumo);
+                        System.out.println("Ave agregada.");
+                    } else {
+                        System.out.println("Ya existe un ave registrada.");
+                    }
+                    break;
 
-            case 3:
-                if (reptil == null) {
-                    reptil = new Reptil(nombre, especie, consumo);
-                    System.out.println("Reptil agregado.");
-                } else {
-                    System.out.println("Ya existe un reptil registrado.");
-                }
-                break;
+                case 3:
+                    if (reptil == null) {
+                        reptil = new Reptil(nombre, especie, consumo);
+                        System.out.println("Reptil agregado.");
+                    } else {
+                        System.out.println("Ya existe un reptil registrado.");
+                    }
+                    break;
 
-            default:
-                System.out.println("Opcion invalida.");
+                default:
+                    System.out.println("Opcion invalida.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: debe ingresar datos validos.");
+            sc.nextLine();
         }
     }
 
@@ -124,44 +136,51 @@ public class Main {
     }
 
     public static void calcularAlimento(Scanner sc) {
-        System.out.println("\n--- CALCULO DE ALIMENTO ---");
-        System.out.println("1. Mamifero");
-        System.out.println("2. Ave");
-        System.out.println("3. Reptil");
-        System.out.print("Seleccione animal: ");
-        int tipo = sc.nextInt();
+        try {
+            System.out.println("\n--- CALCULO DE ALIMENTO ---");
+            System.out.println("1. Mamifero");
+            System.out.println("2. Ave");
+            System.out.println("3. Reptil");
+            System.out.print("Seleccione animal: ");
+            int tipo = sc.nextInt();
 
-        System.out.print("Ingrese cantidad de dias: ");
-        int dias = sc.nextInt();
-        sc.nextLine();
+            System.out.print("Ingrese cantidad de dias: ");
+            int dias = sc.nextInt();
+            sc.nextLine();
 
-        switch (tipo) {
-            case 1:
-                if (mamifero != null) {
-                    System.out.println("Consumo total: " + mamifero.calcularConsumoRecursivo(dias) + " kg");
-                } else {
-                    System.out.println("No hay mamifero registrado.");
-                }
-                break;
+            switch (tipo) {
+                case 1:
+                    if (mamifero != null) {
+                        System.out.println("Consumo total: " + mamifero.calcularConsumoRecursivo(dias) + " kg");
+                    } else {
+                        System.out.println("No hay mamifero registrado.");
+                    }
+                    break;
 
-            case 2:
-                if (ave != null) {
-                    System.out.println("Consumo total: " + ave.calcularConsumoRecursivo(dias) + " kg");
-                } else {
-                    System.out.println("No hay ave registrada.");
-                }
-                break;
+                case 2:
+                    if (ave != null) {
+                        System.out.println("Consumo total: " + ave.calcularConsumoRecursivo(dias) + " kg");
+                    } else {
+                        System.out.println("No hay ave registrada.");
+                    }
+                    break;
 
-            case 3:
-                if (reptil != null) {
-                    System.out.println("Consumo total: " + reptil.calcularConsumoRecursivo(dias) + " kg");
-                } else {
-                    System.out.println("No hay reptil registrado.");
-                }
-                break;
+                case 3:
+                    if (reptil != null) {
+                        System.out.println("Consumo total: " + reptil.calcularConsumoRecursivo(dias) + " kg");
+                    } else {
+                        System.out.println("No hay reptil registrado.");
+                    }
+                    break;
 
-            default:
-                System.out.println("Opcion invalida.");
+                default:
+                    System.out.println("Opcion invalida.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: debe ingresar numeros validos.");
+            sc.nextLine();
         }
     }
 }
+
