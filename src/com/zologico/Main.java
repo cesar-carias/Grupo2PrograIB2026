@@ -20,7 +20,6 @@ public class Main {
             System.out.println("4. Exportar datos a CSV");
             System.out.println("5. Salir");
             System.out.print("Seleccione: ");
-
             try {
                 opcion = sc.nextInt();
                 sc.nextLine();
