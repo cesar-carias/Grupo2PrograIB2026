@@ -1,32 +1,57 @@
 package com.zologico;
 
-import java.io.FileWriter;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 
 public class ArchivoCSV {
-    
-    public static void exportar(Mamifero mamifero, Ave ave, Reptil reptil) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter("zoologico.csv"))) {
 
-            pw.println("tipo,nombre,especie,consumo");
+    public static void exportar(Animal[] animales) {
 
-            if (mamifero != null) {
-                pw.println(mamifero.getTipo() + "," + mamifero.getNombre() + "," + mamifero.getEspecie() + "," + mamifero.getCantidadAlimento());
+        boolean hayDatos = false;
+
+        try (PrintWriter pw = new PrintWriter(
+                new BufferedWriter(
+                        new OutputStreamWriter(
+                                new FileOutputStream("zoologico.csv"),
+                                StandardCharsets.UTF_8)))) {
+
+            pw.println("idAnimal,nombre,especie,años,consumo,tipo,datoEspecifico");
+
+            for (Animal animal : animales) {
+                if (animal != null) {
+                    pw.println(
+                            escapeCsv(String.valueOf(animal.getIdAnimal())) + "," +
+                            escapeCsv(animal.getNombre()) + "," +
+                            escapeCsv(animal.getEspecie()) + "," +
+                            escapeCsv(String.valueOf(animal.getAños())) + "," +
+                            escapeCsv(String.valueOf(animal.getCantidadAlimento())) + "," +
+                            escapeCsv(animal.getTipo()) + "," +
+                            escapeCsv(animal.getDatoEspecifico())
+                    );
+                    hayDatos = true;
+                }
             }
 
-            if (ave != null) {
-                pw.println(ave.getTipo() + "," + ave.getNombre() + "," + ave.getEspecie() + "," + ave.getCantidadAlimento());
+            if (hayDatos) {
+                System.out.println("Datos exportados correctamente a zoologico.csv");
+            } else {
+                System.out.println("No hay animales para exportar.");
             }
-
-            if (reptil != null) {
-                pw.println(reptil.getTipo() + "," + reptil.getNombre() + "," + reptil.getEspecie() + "," + reptil.getCantidadAlimento());
-            }
-
-            System.out.println("Datos exportados correctamente a zoologico.csv");
 
         } catch (IOException e) {
             System.out.println("Error al exportar el archivo: " + e.getMessage());
         }
+    }
+
+    private static String escapeCsv(String valor) {
+        if (valor == null) {
+            return "";
+        }
+        return "\"" + valor.replace("\"", "\"\"") + "\"";
     }
 }

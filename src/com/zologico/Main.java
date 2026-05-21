@@ -7,7 +7,8 @@ public class Main {
     private static final Zoo zoo = new Zoo();
 
     public static void main(String[] args) {
-
+        
+        System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
         Scanner sc = new Scanner(System.in);
         int opcionPrincipal;
 
@@ -25,7 +26,7 @@ public class Main {
                     registrarAnimalPorTipo(sc);
                     break;
                 case 2:
-                    menuFase2(sc);
+                    menuFase2(sc); 
                     break;
                 case 3:
                     calcularAlimento(sc);

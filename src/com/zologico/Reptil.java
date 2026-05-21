@@ -1,18 +1,31 @@
 package com.zologico;
 
+
 public class Reptil extends Animal {
 
-    public Reptil(String nombre, String especie, double cantidadAlimento) {
-        super(nombre, especie, cantidadAlimento);
+    private boolean venenoso;
+
+    public Reptil(long idAnimal, String nombre, String especie, int años, double cantidadAlimento, boolean venenoso) {
+        super(idAnimal, nombre, especie, años, cantidadAlimento);
+        this.venenoso = venenoso;
+    }
+
+    public boolean isVenenoso() {
+        return venenoso;
     }
 
     @Override
     public void emitirSonido() {
-        System.out.println(nombre + " hace:  Ssssss ");
+        System.out.println(getNombre() + " hace: Ssssss");
     }
 
     @Override
     public String getTipo() {
         return "Reptil";
+    }
+
+    @Override
+    public String getDatoEspecifico() {
+        return venenoso ? "Es venenoso: Si" : "Es venenoso: No";
     }
 }
