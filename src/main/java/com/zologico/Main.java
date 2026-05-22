@@ -10,6 +10,7 @@ public class Main {
         
         System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
         Scanner sc = new Scanner(System.in);
+        ConexionBD.conectar();
         int opcionPrincipal;
 
         do {
